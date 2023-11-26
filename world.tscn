@@ -1,0 +1,484 @@
+[gd_scene load_steps=37 format=3 uid="uid://iyalongc2foo"]
+
+[ext_resource type="Script" path="res://world.gd" id="1_frjr5"]
+[ext_resource type="Texture2D" uid="uid://dsd5qs0yr53ou" path="res://world.png" id="2_xd4ix"]
+[ext_resource type="Script" path="res://CharacterBody2D.gd" id="2_xt8u6"]
+[ext_resource type="Texture2D" uid="uid://dvei7goqry3jw" path="res://1 - Agent_Mike_Hurt (32 x 32).png" id="3_fnmx3"]
+[ext_resource type="Texture2D" uid="uid://bwua5ngpajbs6" path="res://1 - Agent_Mike_Idle (32 x 32).png" id="3_j4rcd"]
+[ext_resource type="Texture2D" uid="uid://cjjumftn58x3n" path="res://1 - Agent_Mike_Running (32 x 32).png" id="5_1vwyu"]
+[ext_resource type="Texture2D" uid="uid://wtk5senb34wb" path="res://largetable.png" id="7_m4ec8"]
+[ext_resource type="Texture2D" uid="uid://ps6kx475cp0h" path="res://smalltable.png" id="8_ldfgy"]
+[ext_resource type="Texture2D" uid="uid://cq5iha466hwvg" path="res://coheecohee.png" id="8_sjid2"]
+[ext_resource type="Texture2D" uid="uid://hkevtpy62wgq" path="res://recttable.png" id="9_s80ns"]
+[ext_resource type="Texture2D" uid="uid://dsn5oojy6sywy" path="res://bartable.png" id="10_tsq5s"]
+[ext_resource type="Texture2D" uid="uid://chwnjcq8g6h6h" path="res://foodtable.png" id="11_2u0kh"]
+[ext_resource type="Texture2D" uid="uid://cnlprtl1cllec" path="res://laptopscreen.png" id="13_as4ag"]
+[ext_resource type="Texture2D" uid="uid://bfb4nmusjs7eq" path="res://laptopcover.png" id="14_7vsvc"]
+[ext_resource type="Texture2D" uid="uid://b3jn80548ut18" path="res://HACKATHON OVERWHELMED(1).png" id="16_22kvd"]
+[ext_resource type="Texture2D" uid="uid://ccx53ecrq2ocg" path="res://toilet.png" id="18_kril3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_564ri"]
+size = Vector2(359.937, 321.392)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_airbw"]
+size = Vector2(57, 27)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ib4mw"]
+size = Vector2(32, 94)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6b47h"]
+size = Vector2(166, 15)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_5tgx6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4wy7b"]
+radius = 15.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5p2wc"]
+radius = 28.0179
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5sig2"]
+atlas = ExtResource("3_j4rcd")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jc6dk"]
+atlas = ExtResource("3_j4rcd")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2lvqp"]
+atlas = ExtResource("5_1vwyu")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mqbdn"]
+atlas = ExtResource("5_1vwyu")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6dcv"]
+atlas = ExtResource("5_1vwyu")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqje8"]
+atlas = ExtResource("5_1vwyu")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cp3lc"]
+atlas = ExtResource("5_1vwyu")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifnid"]
+atlas = ExtResource("5_1vwyu")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mhm1q"]
+animations = [{
+"frames": [{
+"duration": 4.5,
+"texture": SubResource("AtlasTexture_5sig2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jc6dk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_fnmx3")
+}],
+"loop": true,
+"name": &"panic",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2lvqp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mqbdn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6dcv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqje8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cp3lc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ifnid")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kr5un"]
+radius = 6.0
+height = 18.0
+
+[sub_resource type="Animation" id="Animation_uo0db"]
+resource_name = "fadein"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_70uik"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hmh3v"]
+_data = {
+"RESET": SubResource("Animation_70uik"),
+"fadein": SubResource("Animation_uo0db")
+}
+
+[node name="world" type="Node2D"]
+script = ExtResource("1_frjr5")
+metadata/_edit_horizontal_guides_ = [385.0]
+
+[node name="spawn" type="Timer" parent="."]
+autostart = true
+
+[node name="floorplan" type="Sprite2D" parent="."]
+position = Vector2(193, 193)
+texture = ExtResource("2_xd4ix")
+
+[node name="Toilet" type="Sprite2D" parent="."]
+position = Vector2(212, 377)
+scale = Vector2(0.200035, 0.059118)
+texture = ExtResource("18_kril3")
+
+[node name="toilet" type="Area2D" parent="Toilet"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Toilet/toilet"]
+position = Vector2(0.000244141, -25.3726)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_564ri")
+
+[node name="colliders" type="Node" parent="."]
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="colliders"]
+position = Vector2(352, 81)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="colliders/StaticBody2D4"]
+position = Vector2(-0.5, 2.5)
+shape = SubResource("RectangleShape2D_airbw")
+
+[node name="StaticBody2D5" type="StaticBody2D" parent="colliders"]
+position = Vector2(351, 182)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="colliders/StaticBody2D5"]
+position = Vector2(-0.5, 2.5)
+shape = SubResource("RectangleShape2D_airbw")
+
+[node name="StaticBody2D6" type="StaticBody2D" parent="colliders"]
+position = Vector2(353, 296)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="colliders/StaticBody2D6"]
+position = Vector2(-13, 42)
+shape = SubResource("RectangleShape2D_ib4mw")
+
+[node name="StaticBody2D7" type="StaticBody2D" parent="colliders"]
+position = Vector2(353, 296)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="colliders/StaticBody2D7"]
+position = Vector2(-269, 24.5)
+shape = SubResource("RectangleShape2D_6b47h")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="colliders"]
+position = Vector2(241, 226)
+physics_material_override = SubResource("PhysicsMaterial_5tgx6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="colliders/StaticBody2D"]
+shape = SubResource("CircleShape2D_4wy7b")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="colliders"]
+position = Vector2(243, 144)
+physics_material_override = SubResource("PhysicsMaterial_5tgx6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="colliders/StaticBody2D2"]
+shape = SubResource("CircleShape2D_4wy7b")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="colliders"]
+position = Vector2(243, 55)
+physics_material_override = SubResource("PhysicsMaterial_5tgx6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="colliders/StaticBody2D3"]
+shape = SubResource("CircleShape2D_5p2wc")
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." node_paths=PackedStringArray("world")]
+position = Vector2(279, 170)
+script = ExtResource("2_xt8u6")
+world = NodePath("..")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
+sprite_frames = SubResource("SpriteFrames_mhm1q")
+animation = &"run"
+frame_progress = 0.252245
+
+[node name="FollowPoint" type="Marker2D" parent="CharacterBody2D/AnimatedSprite2D"]
+position = Vector2(-27, 10)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+zoom = Vector2(2, 2)
+limit_left = 1
+limit_top = 0
+limit_right = 385
+limit_bottom = 385
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(0, 7)
+shape = SubResource("CapsuleShape2D_kr5un")
+
+[node name="Coheecohee" type="Sprite2D" parent="CharacterBody2D"]
+visible = false
+position = Vector2(0, 8)
+rotation = -0.00898512
+scale = Vector2(0.0082809, 0.0273396)
+texture = ExtResource("8_sjid2")
+offset = Vector2(0.00390625, 621.808)
+
+[node name="hackerplaces" type="Node" parent="."]
+
+[node name="Marker2D1" type="Marker2D" parent="hackerplaces"]
+position = Vector2(208, 31)
+
+[node name="Marker2D2" type="Marker2D" parent="hackerplaces"]
+position = Vector2(277, 33)
+
+[node name="Marker2D3" type="Marker2D" parent="hackerplaces"]
+position = Vector2(211, 81)
+
+[node name="Marker2D4" type="Marker2D" parent="hackerplaces"]
+position = Vector2(274, 79)
+
+[node name="Marker2D5" type="Marker2D" parent="hackerplaces"]
+position = Vector2(336, 55)
+
+[node name="Marker2D6" type="Marker2D" parent="hackerplaces"]
+position = Vector2(366, 56)
+
+[node name="Marker2D7" type="Marker2D" parent="hackerplaces"]
+position = Vector2(337, 113)
+
+[node name="Marker2D8" type="Marker2D" parent="hackerplaces"]
+position = Vector2(363, 112)
+
+[node name="Marker2D9" type="Marker2D" parent="hackerplaces"]
+position = Vector2(334, 160)
+
+[node name="Marker2D10" type="Marker2D" parent="hackerplaces"]
+position = Vector2(366, 159)
+
+[node name="Marker2D11" type="Marker2D" parent="hackerplaces"]
+position = Vector2(337, 209)
+
+[node name="Marker2D12" type="Marker2D" parent="hackerplaces"]
+position = Vector2(365, 211)
+
+[node name="Marker2D13" type="Marker2D" parent="hackerplaces"]
+position = Vector2(240, 200)
+
+[node name="Marker2D14" type="Marker2D" parent="hackerplaces"]
+position = Vector2(240, 260)
+
+[node name="Marker2D21" type="Marker2D" parent="hackerplaces"]
+position = Vector2(245, 111)
+
+[node name="Marker2D22" type="Marker2D" parent="hackerplaces"]
+position = Vector2(242, 169)
+
+[node name="Marker2D15" type="Marker2D" parent="hackerplaces"]
+position = Vector2(314, 300)
+
+[node name="Marker2D16" type="Marker2D" parent="hackerplaces"]
+position = Vector2(364, 299)
+
+[node name="Marker2D17" type="Marker2D" parent="hackerplaces"]
+position = Vector2(317, 325)
+
+[node name="Marker2D18" type="Marker2D" parent="hackerplaces"]
+position = Vector2(317, 357)
+
+[node name="Marker2D19" type="Marker2D" parent="hackerplaces"]
+position = Vector2(364, 343)
+
+[node name="Marker2D20" type="Marker2D" parent="hackerplaces"]
+position = Vector2(364, 377)
+
+[node name="sprites" type="Node" parent="."]
+
+[node name="Largetable" type="Sprite2D" parent="sprites"]
+position = Vector2(243, 55)
+texture = ExtResource("7_m4ec8")
+
+[node name="Smalltable" type="Sprite2D" parent="sprites"]
+position = Vector2(243, 144)
+texture = ExtResource("8_ldfgy")
+
+[node name="Smalltable2" type="Sprite2D" parent="sprites"]
+position = Vector2(241, 226)
+texture = ExtResource("8_ldfgy")
+
+[node name="Recttable" type="Sprite2D" parent="sprites"]
+position = Vector2(350, 191)
+texture = ExtResource("9_s80ns")
+
+[node name="Recttable2" type="Sprite2D" parent="sprites"]
+position = Vector2(351, 89)
+texture = ExtResource("9_s80ns")
+
+[node name="Bartable" type="Sprite2D" parent="sprites"]
+position = Vector2(340, 335)
+texture = ExtResource("10_tsq5s")
+
+[node name="Foodtable" type="Sprite2D" parent="sprites"]
+position = Vector2(82, 319)
+texture = ExtResource("11_2u0kh")
+
+[node name="laptops" type="Node" parent="sprites"]
+
+[node name="Laptopscreen" type="Sprite2D" parent="sprites/laptops"]
+position = Vector2(337, 86)
+texture = ExtResource("13_as4ag")
+
+[node name="Laptopscreen2" type="Sprite2D" parent="sprites/laptops"]
+position = Vector2(366, 86)
+texture = ExtResource("13_as4ag")
+
+[node name="Laptopcover" type="Sprite2D" parent="sprites/laptops"]
+position = Vector2(337, 66)
+texture = ExtResource("14_7vsvc")
+
+[node name="Laptopcover2" type="Sprite2D" parent="sprites/laptops"]
+position = Vector2(366, 66)
+texture = ExtResource("14_7vsvc")
+
+[node name="Laptopscreen3" type="Sprite2D" parent="sprites/laptops"]
+position = Vector2(337, 188.5)
+texture = ExtResource("13_as4ag")
+
+[node name="Laptopscreen4" type="Sprite2D" parent="sprites/laptops"]
+position = Vector2(366, 188.5)
+texture = ExtResource("13_as4ag")
+
+[node name="Laptopcover3" type="Sprite2D" parent="sprites/laptops"]
+position = Vector2(337, 168.5)
+texture = ExtResource("14_7vsvc")
+
+[node name="Laptopcover4" type="Sprite2D" parent="sprites/laptops"]
+position = Vector2(366, 168.5)
+texture = ExtResource("14_7vsvc")
+
+[node name="Laptopscreen5" type="Sprite2D" parent="sprites/laptops"]
+position = Vector2(229.5, 61.5)
+texture = ExtResource("13_as4ag")
+
+[node name="Laptopscreen6" type="Sprite2D" parent="sprites/laptops"]
+position = Vector2(258.5, 61.5)
+texture = ExtResource("13_as4ag")
+
+[node name="Laptopcover5" type="Sprite2D" parent="sprites/laptops"]
+position = Vector2(229.5, 41.5)
+texture = ExtResource("14_7vsvc")
+
+[node name="Laptopcover6" type="Sprite2D" parent="sprites/laptops"]
+position = Vector2(258.5, 41.5)
+texture = ExtResource("14_7vsvc")
+
+[node name="Laptopscreen7" type="Sprite2D" parent="sprites/laptops"]
+position = Vector2(243.5, 148.5)
+texture = ExtResource("13_as4ag")
+
+[node name="Laptopscreen8" type="Sprite2D" parent="sprites/laptops"]
+position = Vector2(239.5, 231.5)
+texture = ExtResource("13_as4ag")
+
+[node name="Laptopcover7" type="Sprite2D" parent="sprites/laptops"]
+position = Vector2(243.5, 128.5)
+texture = ExtResource("14_7vsvc")
+
+[node name="Laptopcover8" type="Sprite2D" parent="sprites/laptops"]
+position = Vector2(239.5, 211.5)
+texture = ExtResource("14_7vsvc")
+
+[node name="Laptopscreen9" type="Sprite2D" parent="sprites/laptops"]
+position = Vector2(332, 298)
+rotation = 1.58104
+scale = Vector2(1, 0.60791)
+texture = ExtResource("13_as4ag")
+
+[node name="Laptopcover9" type="Sprite2D" parent="sprites/laptops"]
+position = Vector2(347, 298)
+rotation = 1.58104
+texture = ExtResource("14_7vsvc")
+
+[node name="Laptopscreen10" type="Sprite2D" parent="sprites/laptops"]
+position = Vector2(334, 354)
+rotation = 1.55925
+scale = Vector2(1, 0.538634)
+texture = ExtResource("13_as4ag")
+
+[node name="Laptopcover10" type="Sprite2D" parent="sprites/laptops"]
+position = Vector2(348, 342)
+rotation = 1.55925
+texture = ExtResource("14_7vsvc")
+
+[node name="Laptopcover11" type="Sprite2D" parent="sprites/laptops"]
+position = Vector2(333, 327)
+rotation = 1.55925
+texture = ExtResource("14_7vsvc")
+
+[node name="Laptopcover12" type="Sprite2D" parent="sprites/laptops"]
+position = Vector2(347, 373)
+rotation = 1.55925
+texture = ExtResource("14_7vsvc")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+process_mode = 3
+
+[node name="HackathonOverwhelmed" type="Sprite2D" parent="CanvasLayer"]
+visible = false
+position = Vector2(189, 139)
+scale = Vector2(0.243229, 0.27963)
+texture = ExtResource("16_22kvd")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/HackathonOverwhelmed"]
+libraries = {
+"": SubResource("AnimationLibrary_hmh3v")
+}
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+offset_right = 136.0
+offset_bottom = 28.0
+color = Color(0.188235, 0.188235, 0.188235, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "TOTAL IMPACT: 0"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="timeout" from="spawn" to="." method="_on_spawn_timeout"]
